@@ -1,13 +1,10 @@
 from django.shortcuts import render
 
+def login(request):
+    return render(request, "login.html")
 
-def index(request):
-    if request.user.is_authenticated:
-        user_logged_in = True
-    else:
-        user_logged_in = False
+def cita(request):
+    return render(request, "cita.html")
 
-    usuario = request.user
-
-    context = {'user_logged_in': user_logged_in, 'usuario': usuario}
-    return render(request, "index.html", context)
+def agendar(request):
+    return render(request, "agendar.html")

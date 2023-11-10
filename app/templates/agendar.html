@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="img/logo-bg.png">
+    <link rel="stylesheet" type="text/css" href="{% static 'app/css/cita.css' %}">
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/sign-in/">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+
+    {% load bootstrap5 %}  
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+
+</head>
+<header>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary" style="background-color: #e3f2fd;">
+        <div class="container-fluid">
+          <a href="#" class="navbar-brand d-flex "  style="width: 10%; height: 10%">
+            <img src="{% static 'app/img/logo-centro.png' %}" href="#"alt="" style="width: 60%; height: 60%">     
+        </a>
+    </div>
+    </div>
+  </nav>
+</header>
+<body>
+    <h4>Horas disponibles para el día 9 de noviembre:</h4>
+    <hr>
+    <div class="container">
+    <div class="row">
+        <div class="col-sm-6 mb-3 mb-sm-0">
+          <div class="card" style="width: 25rem; ">
+            <img src="{% static 'app/img/medico-3.jpeg' %}" style="width: 40%; height: 40%" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Mario Valenzuela</h5>
+              <p class="card-text">10:30</p>
+              <a href="#" class="btn btn-primary">Reservar hora</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="card" style="width: 25rem;">
+            <img src="{% static 'app/img/medico-4.jpeg' %}" style="width: 40%; height: 40%" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Constanza Carrasco</h5>
+              <p class="card-text">14:00</p>
+              <a href="#" class="btn btn-primary">Reservar hora</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</body>
