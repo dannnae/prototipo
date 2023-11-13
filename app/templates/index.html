@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="img/logo-bg.png">
+    <link rel="stylesheet" type="text/css" href="{% static 'app/css/index.css' %}">
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/sign-in/">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+    {% load bootstrap5 %}  
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+
+    {% csrf_token %}
+    
+    <header>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary" style="width=60%; height=60%" >
+            <div class="container-fluid">
+                <a class="navbar-brand d-flex ">
+                    <img src="{% static 'app/img/logo-centro.png' %}" href="{% url 'index' %}" alt="" style="width: 20%; height: 20%">     
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">Consultas medicas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Examenes y laboratorio</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Especialidades
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Action</a></li>
+                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Reservar hora</a>
+                        </li>
+                    </ul>
+                    <form class="d-flex" role="search">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                        <a class="bi bi-person-circle" href="{% url 'login' %}" style="font-size: 30px; color: #3E54AC; margin: 8px;"></a>
+                    </form>
+                </div>
+            </div>
+        </nav>
+    </header>  
+
+<!-- Carousel -->
+<body>
+<div id="carouselExampleIndicators" class="carousel slide">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="{% static 'app/img/carousel-2.jpg' %}" class="d-block w-100" style="filter: brightness(40%)" alt="...">
+        <div class="container">
+          <div class="carousel-caption text-start texto-carousel">
+            <h1>Bienvenido a centro medico Galenos</h1>
+            <p>Todo para cuidar tu salud</p>
+            <p><a class="btn btn-lg btn-primary" href="#">Ver planes</a></p>
+          </div>
+        </div>
+      </div>
+
+      {% comment %} <div class="carousel-item">
+        <img src="{% static 'app/img/carousel-3.jpeg' %}" class="d-block w-100" style="filter: brightness(40%)" alt="...">
+        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></svg>
+        <div class="container">
+          <div class="carousel-caption texto-carousel">
+            <h1>a</h1>
+            <p>a</p>
+            <p><a class="btn btn-lg btn-primary" href="#">Reservar hora</a></p>
+          </div>
+        </div>
+      </div> {% endcomment %}
+
+    
+
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div> 
+
+  <div style="margin-bottom: 70px;"></div>
+
+<div class="py-5 text-center container">
+    <div class="row py-lg-5">
+      <div class="container-fluid">
+        <div class="col-lg-6 col-md-8 mx-auto">   
+  
+        <h2 class="fw-light">Especialistas en salud</h2> 
+        <a class="justify-content-end">
+          <img src="{% static 'app/img/icon.png' %}" href="# "alt="" style="width: 45%; height: 45%" >
+        </a>
+        <div style="margin-bottom: 50px;"></div>
+        <p class="fw-light" style="font-size: 20px; color:#32355d">Te acompañamos en cada etapa de tu vida ofreciéndote una amplia gama de servicios para cuidar de tu salud y la tu familia</p>
+  
+      </div>
+    </div>
+  </div>
+  </div>
+  
+<!-- CARDS -->
+
+  <div class="carousel-inner py-4">
+    <!-- Single item -->
+    <div class="carousel-item active">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4">
+            <div class="card">
+              <img
+              src="{% static 'app/img/card-1.jpg' %}"
+                class="card-img-top"
+                alt="Waterfall"/>
+              <div class="card-body">
+                <h5 class="card-title">Telemedicina</h5>
+                <p class="card-text">
+                  Tienes la opcion de realizar tus consultas medicas por medio de teleconsulta
+                </p>
+                <a href="#!" class="btn btn-primary">Mas informacion</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 d-none d-lg-block">
+            <div class="card">
+              <img
+              src="{% static 'app/img/card-2.jpg' %}"
+                class="card-img-top"
+                alt="Sunset Over the Sea"
+              />
+              <div class="card-body">
+                <h5 class="card-title">Planes</h5>
+                <p class="card-text">
+                  Revisa tu plan mas conveniente
+                </p>
+                <a href="#!" class="btn btn-primary">Mas informacion</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 d-none d-lg-block">
+            <div class="card">
+              <img
+              src="{% static 'app/img/card-3.jpg' %}"
+                class="card-img-top"
+                alt="Sunset over the Sea"
+              />
+              <div class="card-body">
+                <h5 class="card-title">Resultados examanes</h5>
+                <p class="card-text">
+                  Revisar el resultados de tus examanes desde tu computador
+                </p>
+                <a href="#!" class="btn btn-primary">Mas informacion</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+</body>
