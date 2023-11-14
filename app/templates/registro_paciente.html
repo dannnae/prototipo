@@ -1,0 +1,25 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'app/css/register.css' %}">
+    <link rel="shortcut icon" href="img/register2.jpg">
+    <title>Document</title>
+</head>
+    {% load bootstrap5 %}  
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+<body>
+    
+
+
+    <h2>Registro de Paciente</h2>
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">Registrarse</button>
+    </form>
+</section>

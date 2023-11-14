@@ -30,15 +30,19 @@ class CustomUserManager(BaseUserManager):
 class Medico(AbstractUser):
     rut = models.CharField(max_length=20)
     nombre = models.CharField(max_length=100)
-    especialidad = models.CharField(max_length=100)
+    especialidad = models.ForeignKey('Especialidad', on_delete=models.CASCADE, null=True)
     disponibilidad = models.ForeignKey('Disponibilidad', on_delete=models.CASCADE, null=True)
 
     # Add related_name to avoid clashes
     groups = models.ManyToManyField('auth.Group', related_name='medico_groups')
     user_permissions = models.ManyToManyField('auth.Permission', related_name='medico_user_permissions')
 
+    def __str__(self):
+        return self.nombre
+    
 class Paciente(AbstractUser):
-    rut = models.CharField(max_length=20)
+    username = None
+    rut = models.CharField(max_length=20, unique=True)
     nombre = models.CharField(max_length=100)
     email = models.EmailField()
     telefono = models.CharField(max_length=15)
@@ -46,6 +50,11 @@ class Paciente(AbstractUser):
     # Add related_name to avoid clashes
     groups = models.ManyToManyField('auth.Group', related_name='paciente_groups')
     user_permissions = models.ManyToManyField('auth.Permission', related_name='paciente_user_permissions')
+
+    USERNAME_FIELD = 'rut'
+
+    def __str__(self):
+        return self.nombre
 
 class Secretaria(AbstractUser):
     rut = models.CharField(max_length=20)
@@ -79,6 +88,13 @@ class Comision(models.Model):
     monto = models.FloatField()
     medico = models.ForeignKey(Medico,on_delete=models.CASCADE, null=True)
     fecha = models.DateField()
+
+class Especialidad(models.Model):
+    nombre = models.FloatField()
+
+    def __str__(self):
+        return self.nombre
+
 
 
 
