@@ -53,7 +53,14 @@
                     <form class="d-flex" role="search">
                         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                         <button class="btn btn-outline-success" type="submit">Search</button>
+
+                        {% if user_logged_in %}
+                          <h4>{{ usuario.nombre }}</h4>
+                        
+                        {% else %}
                         <a class="bi bi-person-circle" href="{% url 'login' %}" style="font-size: 30px; color: #3E54AC; margin: 8px;"></a>
+                      {% endif %}
+                        <a class="bi bi-person-circle" href="{% url 'paciente' %}" style="font-size: 30px; color: #3E54AC; margin: 8px;"></a>
                     </form>
                 </div>
             </div>
