@@ -50,18 +50,26 @@
                             <a class="nav-link" href="#">Reservar hora</a>
                         </li>
                     </ul>
-                    <form class="d-flex" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit">Search</button>
-
+                    
+                        {% if not user_logged_in %}
+                        <li class="navbar-nav nav-item" >
+                          <a class="nav-link" href="{% url 'login' %}" style="font-size: 15px;">Inicia sesión</a>
+                        </li>
+                        {% endif %}
+                  
                         {% if user_logged_in %}
-                          <h4>{{ usuario.nombre }}</h4>
-                        
-                        {% else %}
-                        <a class="bi bi-person-circle" href="{% url 'login' %}" style="font-size: 30px; color: #3E54AC; margin: 8px;"></a>
-                      {% endif %}
-                        <a class="bi bi-person-circle" href="{% url 'paciente' %}" style="font-size: 30px; color: #3E54AC; margin: 8px;"></a>
-                    </form>
+                        <ul class="navbar-nav">
+                        <li class="nav-item dropdown">
+                          <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            {{usuario.nombre}}
+                          </a>
+                          <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{% url 'paciente_cuenta' %}">Perfil</a></li>
+                            <li><a class="dropdown-item" href="#">Citas</a></li>
+                            <li><a class="dropdown-item" href="{% url 'logout_paciente' %}">Cerrar sesión</a></li>
+                          </ul>
+                            {% endif %}
+                          </ul>
                 </div>
             </div>
         </nav>
@@ -188,6 +196,91 @@
           </div>
         </div>
       </div>
+
+    <!-- Footer -->
+<footer class="text-center text-lg-start bg-white text-muted">
+
+  
+  <!-- Section: Social media -->
+  <div class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom"></div>
+
+  <!-- Section: Links  -->
+  <div class="">
+    <div class="container text-center text-md-start mt-5">
+      <!-- Grid row -->
+      <div class="row mt-3">
+        <!-- Grid column -->
+        <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+          <!-- Content -->
+          <h6 class="text-uppercase fw-bold mb-4">
+            <i class="fas fa-gem me-3 text-secondary"></i>Centro medico Galenos
+
+           
+          </h6>
+          <p>
+            Somos un centro medico donde tu salud en nuestra prioridad
+          </p>
+          <a href="index.html" class="navbar-brand d-flex ">
+            <img src="{% static 'app/img/logo-centro.png' %}" href="index.html"alt="" style="width: 40%; height: 40%" >
+          
+        </a>
+
+        </div>
+        
+
+        <!-- Grid column -->
+        <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+          <!-- Links -->
+          <h6 class="text-uppercase fw-bold mb-4">
+            Informaciones
+          </h6>
+          <p>
+            <a href="#!" class="text-reset">Términos y Condiciones</a>
+          </p>
+          <p>
+            <a href="#!" class="text-reset">¿Quiénes Somos?</a>
+          </p>
+          <p>
+            <a href="#!" class="text-reset">Contacto y Ayuda</a>
+          </p>
+        </div>
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+        <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+          <!-- Links -->
+          <h6 class="text-uppercase fw-bold mb-4">
+            Comunicate con nosotros
+          </h6>
+          <p>
+            <a href="#!" class="text-reset">Numeros de contacto</a>
+            <i class="bi bi-telephone"></i>
+          </p>
+          
+        </div>
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+          <!-- Links -->
+          <h6 class="text-uppercase fw-bold mb-4">Siguenos!</h6>
+          <a class="bi bi-instagram" href="#" style="font-size: 20px; color: #3E54AC; margin: 8px;"></a>
+          <a class="bi bi-facebook" href="" style="font-size: 20px; color: #3E54AC; margin: 8px;"></a>
+          <a class="bi bi-twitter-x" href="" style="font-size: 20px; color: #3E54AC; margin: 8px;"></a>
+        </div>
+        <!-- Grid column -->
+      </div>
+      <!-- Grid row -->
     </div>
+  </div>
+  <!-- Section: Links  -->
+
+  <!-- Copyright -->
+  <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.025);">
+    © 2016-2023 Copyright Centro medico Galenos
+  </div>
+  <!-- Copyright -->
+</footer>
+<!-- Footer -->
 
 </body>

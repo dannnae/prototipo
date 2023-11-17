@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="img/logo-bg.png">
+    <link rel="stylesheet" type="text/css" href="{% static 'app/css/paciente_cuenta.css' %}">
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/sign-in/">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+    {% load bootstrap5 %}  
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+
+    {% csrf_token %}
+    
+    <header>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary" style="width=60%; height=60%" >
+            <div class="container-fluid">
+                <a class="navbar-brand d-flex ">
+                    <img src="{% static 'app/img/logo-centro.png' %}" href="{% url 'index' %}" alt="" style="width: 20%; height: 20%">     
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">Consultas medicas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Examenes y laboratorio</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Especialidades
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Action</a></li>
+                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Reservar hora</a>
+                        </li>
+                    </ul>
+                    
+                        {% if not user_logged_in %}
+                        <li class="navbar-nav nav-item" >
+                          <a class="nav-link" href="{% url 'login' %}" style="font-size: 15px;">Inicia sesión</a>
+                        </li>
+                        {% endif %}
+                  
+                        {% if user_logged_in %}
+                        <ul class="navbar-nav">
+                        <li class="nav-item dropdown">
+                          <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            {{usuario.nombre}}
+                          </a>
+                          <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{% url 'paciente_cuenta' %}">Perfil</a></li>
+                            <li><a class="dropdown-item" href="#">Citas</a></li>
+                            <li><a class="dropdown-item" href="{% url 'logout_paciente' %}">Cerrar sesión</a></li>
+                          </ul>
+                            {% endif %}
+                          </ul>
+                </div>
+            </div>
+        </nav>
+    </header>  
+<body>
+    
+    <div class="container-fluid">
+        <div class="row">
+            <nav id="sidebarMenu" class="col-lg-3 d-lg-block sidebar collapse bg-white">
+   
+        <a class="navbar-brand d-flex centrar">
+            <img src="{% static 'app/img/logo-centro.png' %}" href="{% url 'index' %}" alt="" style="width: 50%; height: 50%">     
+        </a>
+    
+        <div class="position-sticky">
+          <div class="list-group list-group-flush mx-3 mt-4">
+            <a
+              href="#"
+              class="list-group-item list-group-item-action py-2 ripple"
+              aria-current="true">
+            
+              <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Menu</span>
+              
+            </a>
+            <a href="#" class="list-group-item list-group-item-action py-2 ripple active">
+              <i class="fas fa-chart-area fa-fw me-3"></i><span>Inicio</span>
+            </a>
+            <a href="#" class="list-group-item list-group-item-action py-2 ripple"
+              ><i class="fas fa-lock fa-fw me-3"></i><span>Mis datos</span></a
+            >
+            <a href="#" class="list-group-item list-group-item-action py-2 ripple"
+              ><i class="fas fa-chart-line fa-fw me-3"></i><span>Citas</span></a
+            >
+            <a href="#" class="list-group-item list-group-item-action py-2 ripple">
+              <i class="fas fa-chart-pie fa-fw me-3"></i><span>Mis datos</span>
+            </a>
+            <a href="#" class="list-group-item list-group-item-action py-2 ripple"
+              ><i class="fas fa-chart-bar fa-fw me-3"></i><span>Cerrar sesion</span>   <i class="bi bi-box-arrow-right"></i></a
+            >
+            
+            
+          </div>
+        </div>
+        
+      </nav>
+      <main class="col-lg-9 ms-lg-auto">
+        <h3>
+            Hola! 
+        </h3>
+        <h4>{{usuario.nombre}}</h4>
+        <div class="accordion accordion-flush" id="accordionFlushExample">
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                  Proximas citas
+                </button>
+              </h2>
+              <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body">Usted no tiene horas reservadas</div>
+              </div>
+            </div>
+            <div style="margin-bottom: 70px;"></div>
+            <p>
+                Accesos directos
+            </p>
+            <div style="margin-bottom: 60px;"></div>
+            <div class="container text-center">
+                <div class="row">
+                  <div class="col">
+                    <img src="{% static 'app/img/agenda.png' %}" class="img-fluid" style="width: 20%;" alt="imagen">
+                    <p>Agenda</p>
+                    <i class="bi bi-arrow-return-right"></i>
+                  </div>
+                  <div class="col">
+                    <img src="{% static 'app/img/examanes.png' %}" class="img-fluid" style="width: 20%;" alt="imagen">
+                    
+                    <p>Resultados examenes</p>
+                    <i class="bi bi-arrow-return-right"></i>
+                    
+                  </div>
+                  
+                  <div class="col">
+                    <img src="{% static 'app/img/recetas.png' %}" class="img-fluid" style="width: 20%;" alt="imagen">
+                    <p>Recetas</p>
+                    <i class="bi bi-arrow-return-right"></i>
+                  </div>
+                  
+                
+                </main>
+            </div>
+        </div>
+
+      
+</body>
