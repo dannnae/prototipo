@@ -1,7 +1,7 @@
 from django.contrib.auth import authenticate
-from django import forms
+from django import forms 
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from .models import Paciente, Medico, Secretaria
+from .models import Cita, Paciente, Medico, Secretaria
 
 class PacienteRegistrationForm(UserCreationForm):
     rut = forms.CharField(max_length=20)
@@ -49,4 +49,12 @@ class MultiUsuarioLoginForm(AuthenticationForm):
 
         return self.cleaned_data
 
-    
+class CitaForm(forms.ModelForm):
+
+    class Meta:
+        model = Cita
+        fields = ['fechaHora']
+
+        widgets = {
+            'fechaHora': forms.DateTimeInput(attrs={'type': 'datetime-local'}, format='%Y-%m-%dT%H:%M'),
+        }

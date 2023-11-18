@@ -51,25 +51,25 @@
                         </li>
                     </ul>
                     
-                        {% if not user_logged_in %}
-                        <li class="navbar-nav nav-item" >
-                          <a class="nav-link" href="{% url 'login' %}" style="font-size: 15px;">Inicia sesión</a>
-                        </li>
+                    {% if not user_logged_in %}
+                    <li class="navbar-nav nav-item" >
+                      <a class="nav-link" href="{% url 'login' %}" style="font-size: 15px;">Inicia sesión</a>
+                    </li>
+                    {% endif %}
+              
+                    {% if user_logged_in %}
+                    <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        {{usuario.nombre}}
+                      </a>
+                      <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{% url 'paciente_cuenta' %}">Perfil</a></li>
+                        <li><a class="dropdown-item" href="#">Citas</a></li>
+                        <li><a class="dropdown-item" href="{% url 'logout_paciente' %}">Cerrar sesión</a></li>
+                      </ul>
                         {% endif %}
-                  
-                        {% if user_logged_in %}
-                        <ul class="navbar-nav">
-                        <li class="nav-item dropdown">
-                          <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            {{usuario.nombre}}
-                          </a>
-                          <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{% url 'paciente_cuenta' %}">Perfil</a></li>
-                            <li><a class="dropdown-item" href="#">Citas</a></li>
-                            <li><a class="dropdown-item" href="{% url 'logout_paciente' %}">Cerrar sesión</a></li>
-                          </ul>
-                            {% endif %}
-                          </ul>
+                      </ul>
                 </div>
             </div>
         </nav>
@@ -128,7 +128,15 @@
                 </button>
               </h2>
               <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-                <div class="accordion-body">Usted no tiene horas reservadas</div>
+                {% for cita in object_list %}
+            <li>
+                <strong>Fecha y Hora:</strong> {{ cita.fechaHora }}<br>
+                <strong>Médico:</strong> {{ cita.medico }}<br>
+                <strong>Paciente:</strong> {{ cita.paciente }}<br>
+            </li>
+                {% endfor %}
+                <a href="{% url 'cita_create' %}">Crear Nueva Cita</a> 
+
               </div>
             </div>
             <div style="margin-bottom: 70px;"></div>

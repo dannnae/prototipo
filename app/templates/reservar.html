@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Citas</title>
+</head>
+<body>
+    <h1>Lista de Citas</h1>
+    <a href="{% url 'cita_create' %}">Crear Nueva Cita</a> <!-- Enlace para crear una nueva cita -->
+    
+    <ul>
+        {% for cita in object_list %}
+            <li>
+                <strong>Fecha y Hora:</strong> {{ cita.fechaHora }}<br>
+                <strong>Médico:</strong> {{ cita.medico }}<br>
+                <strong>Paciente:</strong> {{ cita.paciente }}<br>
+                <!-- Puedes añadir más detalles de la cita según tus modelos -->
+                
+                <!-- Enlace para editar la cita -->
+                <a href="{% url 'cita_update' cita.pk %}">Editar</a>
+                
+                <!-- Enlace para eliminar la cita (con confirmación) -->
+                <form action="{% url 'cita_delete' cita.pk %}" method="post">
+                    {% csrf_token %}
+                    <input type="submit" value="Eliminar">
+                </form>
+            </li>
+            <hr>
+        {% endfor %}
+    </ul>
+</body>
+
