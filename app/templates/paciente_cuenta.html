@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 {% load static %}
 
-<html lang="en">
+<html lang="en" style="background-color:lightcyan;">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,13 +18,9 @@
 
     {% csrf_token %}
     
-    <header>
-        <nav class="navbar navbar-expand-lg bg-body-tertiary" style="width=60%; height=60%" >
-            <div class="container-fluid">
-                <a class="navbar-brand d-flex ">
-                    <img src="{% static 'app/img/logo-centro.png' %}" href="{% url 'index' %}" alt="" style="width: 20%; height: 20%">     
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <body class="container">
+       
+                {% comment %} <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -49,7 +45,7 @@
                         <li class="nav-item">
                             <a class="nav-link" href="#">Reservar hora</a>
                         </li>
-                    </ul>
+                    </ul> {% endcomment %}
                     
                     {% if not user_logged_in %}
                     <li class="navbar-nav nav-item" >
@@ -58,26 +54,22 @@
                     {% endif %}
               
                     {% if user_logged_in %}
-                    <ul class="navbar-nav">
-                    <li class="nav-item dropdown">
-                      <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        {{usuario.nombre}}
-                      </a>
-                      <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="{% url 'paciente_cuenta' %}">Perfil</a></li>
-                        <li><a class="dropdown-item" href="#">Citas</a></li>
-                        <li><a class="dropdown-item" href="{% url 'logout_paciente' %}">Cerrar sesión</a></li>
-                      </ul>
+                    <div class="navbar">
+                        <ul class="navbar-nav">
+                          <a>
+                            <h3>{{usuario.nombre}}</h3>
+                            <img src="{% static 'app/img/user.png' %}" alt="" style="width: 20%; height: auto;">
+                           </a>
+                            </li>
+                        </ul>
+                   
                         {% endif %}
-                      </ul>
+                      
                 </div>
             </div>
         </nav>
-    </header>  
-<body>
-    
     <div class="container-fluid">
-        <div class="row">
+                <div class="row">
             <nav id="sidebarMenu" class="col-lg-3 d-lg-block sidebar collapse bg-white">
    
         <a class="navbar-brand d-flex centrar">
@@ -88,13 +80,13 @@
           <div class="list-group list-group-flush mx-3 mt-4">
             <a
               href="#"
-              class="list-group-item list-group-item-action py-2 ripple"
+              class="list-group-item list-group-item-action py-2 ripple active"
               aria-current="true">
             
               <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Menu</span>
               
             </a>
-            <a href="#" class="list-group-item list-group-item-action py-2 ripple active">
+            <a href="{% url 'index' %}" class="list-group-item list-group-item-action py-2 ripple">
               <i class="fas fa-chart-area fa-fw me-3"></i><span>Inicio</span>
             </a>
             <a href="#" class="list-group-item list-group-item-action py-2 ripple"
@@ -106,13 +98,14 @@
             <a href="#" class="list-group-item list-group-item-action py-2 ripple">
               <i class="fas fa-chart-pie fa-fw me-3"></i><span>Mis datos</span>
             </a>
-            <a href="#" class="list-group-item list-group-item-action py-2 ripple"
+            <a href="{% url 'logout_paciente' %}" class="list-group-item list-group-item-action py-2 ripple"
               ><i class="fas fa-chart-bar fa-fw me-3"></i><span>Cerrar sesion</span>   <i class="bi bi-box-arrow-right"></i></a
             >
             
             
-          </div>
-        </div>
+          
+    </div>
+</div>
         
       </nav>
       <main class="col-lg-9 ms-lg-auto">
@@ -129,14 +122,13 @@
               </h2>
               <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
                 {% for cita in object_list %}
+                <p>Reserva</p>
             <li>
                 <strong>Fecha y Hora:</strong> {{ cita.fechaHora }}<br>
                 <strong>Médico:</strong> {{ cita.medico }}<br>
                 <strong>Paciente:</strong> {{ cita.paciente }}<br>
             </li>
                 {% endfor %}
-                <a href="{% url 'cita_create' %}">Crear Nueva Cita</a> 
-
               </div>
             </div>
             <div style="margin-bottom: 70px;"></div>
@@ -147,8 +139,10 @@
             <div class="container text-center">
                 <div class="row">
                   <div class="col">
+                    <a href="{% url 'cita_create' %}">
                     <img src="{% static 'app/img/agenda.png' %}" class="img-fluid" style="width: 20%;" alt="imagen">
-                    <p>Agenda</p>
+                    </a>
+                    <p>Reservar</p>
                     <i class="bi bi-arrow-return-right"></i>
                   </div>
                   <div class="col">
@@ -164,11 +158,98 @@
                     <p>Recetas</p>
                     <i class="bi bi-arrow-return-right"></i>
                   </div>
+                  <div>
+                    <div style="margin-bottom: 100px;"></div>
+                  <img src="{% static 'app/img/cuenta.png' %}" alt="" style="width: 20%; height: auto;">
                   
-                
                 </main>
             </div>
         </div>
+         <!-- Footer -->
+<footer class="text-center text-lg-start bg-white text-muted">
 
+  
+    <!-- Section: Social media -->
+    <div class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom"></div>
+  
+    <!-- Section: Links  -->
+    <div class="">
+      <div class="container text-center text-md-start mt-5">
+        <!-- Grid row -->
+        <div class="row mt-3">
+          <!-- Grid column -->
+          <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+            <!-- Content -->
+            <h6 class="text-uppercase fw-bold mb-4">
+              <i class="fas fa-gem me-3 text-secondary"></i>Centro medico Galenos
+  
+             
+            </h6>
+            <p>
+              Somos un centro medico donde tu salud en nuestra prioridad
+            </p>
+            <a href="index.html" class="navbar-brand d-flex ">
+              <img src="{% static 'app/img/logo-centro.png' %}" href="index.html"alt="" style="width: 40%; height: 40%" >
+            
+          </a>
+  
+          </div>
+          
+  
+          <!-- Grid column -->
+          <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+            <!-- Links -->
+            <h6 class="text-uppercase fw-bold mb-4">
+              Informaciones
+            </h6>
+            <p>
+              <a href="#!" class="text-reset">Términos y Condiciones</a>
+            </p>
+            <p>
+              <a href="#!" class="text-reset">¿Quiénes Somos?</a>
+            </p>
+            <p>
+              <a href="#!" class="text-reset">Contacto y Ayuda</a>
+            </p>
+          </div>
+          <!-- Grid column -->
+  
+          <!-- Grid column -->
+          <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+            <!-- Links -->
+            <h6 class="text-uppercase fw-bold mb-4">
+              Comunicate con nosotros
+            </h6>
+            <p>
+              <a href="#!" class="text-reset">Numeros de contacto</a>
+              <i class="bi bi-telephone"></i>
+            </p>
+            
+          </div>
+          <!-- Grid column -->
+  
+          <!-- Grid column -->
+          <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+            <!-- Links -->
+            <h6 class="text-uppercase fw-bold mb-4">Siguenos!</h6>
+            <a class="bi bi-instagram" href="#" style="font-size: 20px; color: #3E54AC; margin: 8px;"></a>
+            <a class="bi bi-facebook" href="" style="font-size: 20px; color: #3E54AC; margin: 8px;"></a>
+            <a class="bi bi-twitter-x" href="" style="font-size: 20px; color: #3E54AC; margin: 8px;"></a>
+          </div>
+          <!-- Grid column -->
+        </div>
+        <!-- Grid row -->
+      </div>
+    </div>
+    <!-- Section: Links  -->
+  
+    <!-- Copyright -->
+    <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.025);">
+      © 2016-2023 Copyright Centro medico Galenos
+    </div>
+    <!-- Copyright -->
+  </footer>
+  <!-- Footer -->
+        
       
 </body>
