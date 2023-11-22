@@ -2,8 +2,18 @@ hr.new1 {
     border-top: 5px dashed #ff6f96;
     }
 
-a {
-    color: #0d6efd;
-    text-decoration: underline;
-    font-size: large;
+.nav-link {
+    display: block;
+    padding: var(--bs-nav-link-padding-y) var(--bs-nav-link-padding-x);
+    font-size: var(--bs-nav-link-font-size);
+    font-weight: var(--bs-nav-link-font-weight);
+    color: aqua!important;
+    text-decoration: none;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s 
+}
+
+.text-reset {
+    --bs-text-opacity: 1;
+    color: inherit!important;
+    text-decoration: none;
 }
