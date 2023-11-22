@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load django_bootstrap5 %}  
+    <meta charset="UTF-8">
+    <title>Confirmar cancelación</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Enlaza tu archivo de estilos CSS -->
+</head>
+<body>
+    <div class="container">
+        <h1>Confirmar cancelación de cita</h1>
+        <p>¿Estás seguro de que deseas cancelar esta cita?</p>
+        
+        <form method="post" class="confirmation-form">
+            {% csrf_token %}
+            <button type="submit" class="cancel-button">Cancelar cita</button>
+            <a href="{% url 'cita_list' %}" class="back-link">Volver</a>
+        </form>
+    </div>
+</body>
+
+<style>
+    /* Reset de estilos para el body y margen del contenedor */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif; /* Cambia la fuente si lo deseas */
+    background-color: #f7f7f7; /* Cambia el color de fondo si lo deseas */
+}
+
+.container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    color: #333;
+    text-align: center;
+}
+
+p {
+    color: #555;
+    text-align: center;
+}
+
+.confirmation-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.cancel-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #ff5050;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.cancel-button:hover {
+    background-color: #dd4040;
+}
+
+.back-link {
+    margin-left: 20px;
+    font-size: 16px;
+    transition: color 0.3s ease;
+}
+
+.back-link:hover {
+    color: #000;
+}
+
+</style>
+</html>

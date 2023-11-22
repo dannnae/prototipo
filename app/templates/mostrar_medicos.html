@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="es">
+<head>
+    {% load django_bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    <meta charset="UTF-8">
+    <title>Seleccionar Médico</title>
+</head>
+<header>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary" >
+        <div class="container-fluid">
+            <a class="navbar-brand d-flex ">
+                <img src="{% static 'app/img/logo-centro.png' %}" href="{% url 'index' %}" alt="" style="width: 20%; height: 20%">     
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Consultas médicas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Exámenes y laboratorio</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Especialidades
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Médicina general</a></li>
+                            <li><a class="dropdown-item" href="#">Oftalmología</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#">Kinesiología</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Reservar hora</a>
+                    </li>
+                </ul>
+                
+                    
+            </div>
+        </div>
+    </nav>
+</header>  
+<body>
+    
+    <div class="container">
+    <div class="card-group">
+        {% for medico in medicos %}
+            <div class="card" >
+                <img src="{% static 'app/img/medic.png' %}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{ medico.nombre }}</h5>
+                    <p class="card-text">Especialidad: {{ medico.especialidad }}</p>
+                    <a href="{% url 'cita_create' medico.id %}" class="btn btn-primary">Reservar cita</a>
+             
+                </div>
+            </div>
+        {% endfor %}
+        </div>
+    </div> 
+
+</body>
+</html>
+
+
+
